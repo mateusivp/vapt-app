@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vapt - Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">Vapt</div>
+            <div class="nav-buttons">
+                <button id="login-button" class="nav-button">Entrar</button>
+                <button id="register-button" class="nav-button primary">Cadastrar</button>
+            </div>
+        </nav>
+
+        <!-- Search and Filters Section -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Buscar produtos..." class="search-input">
+                    <button id="voice-search" class="voice-search-btn" title="Busca por voz">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <button id="filter-toggle" class="filter-toggle">
+                    <i class="fas fa-filter"></i>
+                </button>
+            </div>
+            
+            <!-- Filters Panel -->
+            <div id="filters-panel" class="filters-panel">
+                <div class="filter-group">
+                    <label>Categoria:</label>
+                    <select id="category-filter">
+                        <option value="">Todas as categorias</option>
+                        <option value="eletronicos">Eletrônicos</option>
+                        <option value="moda">Moda</option>
+                        <option value="casa">Casa e Decoração</option>
+                        <option value="esportes">Esportes</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Preço:</label>
+                    <div class="price-range">
+                        <input type="number" id="min-price" placeholder="Mín" class="price-input">
+                        <span>até</span>
+                        <input type="number" id="max-price" placeholder="Máx" class="price-input">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Localização:</label>
+                    <input type="text" id="location-filter" placeholder="Digite sua cidade..." class="location-input">
+                    <div class="distance-range">
+                        <label for="distance-range">Raio: <span id="distance-value">50</span> km</label>
+                        <input type="range" id="distance-range" min="5" max="200" value="50" class="distance-slider">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Ordenar por:</label>
+                    <select id="sort-filter">
+                        <option value="recent">Mais recentes</option>
+                        <option value="price-low">Menor preço</option>
+                        <option value="price-high">Maior preço</option>
+                        <option value="distance">Mais próximos</option>
+                    </select>
+                </div>
+                
+                <div class="filter-actions">
+                    <button id="clear-filters" class="btn secondary">Limpar</button>
+                    <button id="apply-filters" class="btn primary">Aplicar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Feed Container -->
+            <div id="feed-container" class="feed-container">
+                <!-- Product cards will be loaded here -->
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Buscar</span>
+            </div>
+            <div class="nav-item add-button">
+                <i class="fas fa-plus-circle"></i>
+                <span>Vender</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-heart"></i>
+                <span>Favoritos</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Entrar</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email ou Telefone</label>
+                    <input type="text" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn primary">Entrar</button>
+                <div class="social-login">
+                    <p>Ou entre com:</p>
+                    <button type="button" class="btn google"><i class="fab fa-google"></i> Google</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cadastrar</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Nome completo</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Telefone (WhatsApp)</label>
+                    <input type="tel" id="register-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-location">Cidade/Bairro</label>
+                    <input type="text" id="register-location" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Senha</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirmar senha</label>
+                    <input type="password" id="register-confirm-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile-photo">Foto de perfil</label>
+                    <input type="file" id="profile-photo" accept="image/*">
+                </div>
+                <button type="submit" class="btn primary">Cadastrar</button>
+                <div class="social-login">
+                    <p>Ou cadastre-se com:</p>
+                    <button type="button" class="btn google"><i class="fab fa-google"></i> Google</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content product-modal-content">
+            <span class="close">&times;</span>
+            <div class="product-details">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Anunciar Produto</h2>
+            <form id="add-product-form">
+                <div class="form-group">
+                    <label for="product-name">Nome do produto</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Descrição</label>
+                    <textarea id="product-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Preço (R$)</label>
+                    <input type="number" id="product-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Categoria</label>
+                    <select id="product-category" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="eletronicos">Eletrônicos</option>
+                        <option value="moda">Moda</option>
+                        <option value="casa">Casa e Decoração</option>
+                        <option value="esportes">Esportes</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-location">Localização</label>
+                    <input type="text" id="product-location" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-photos">Fotos (máx. 5)</label>
+                    <input type="file" id="product-photos" accept="image/*" multiple>
+                    <div id="photo-preview" class="photo-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label for="product-video">Vídeo (opcional)</label>
+                    <input type="file" id="product-video" accept="video/*">
+                    <div id="video-preview" class="video-preview"></div>
+                </div>
+                <button type="submit" class="btn primary">Anunciar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
