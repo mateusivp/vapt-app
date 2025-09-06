@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "build": "echo 'Build completed'"
+    "dev": "node server.js"
   },
   "keywords": [
     "marketplace",
