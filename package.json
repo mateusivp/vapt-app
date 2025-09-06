@@ -4,7 +4,7 @@
   "description": "VAPT - Marketplace de produtos usados estilo TikTok",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Static site - no build needed'"
+    "build": "echo 'Build completed - files are in public directory'"
   },
   "keywords": [
     "marketplace",
