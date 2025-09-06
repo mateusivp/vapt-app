@@ -71,7 +71,7 @@ body {
 .main-content {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 60px; /* Espaço para a navegação inferior */
+    padding-bottom: 100px; /* Mais espaço para a navegação inferior */
     scroll-snap-type: y mandatory;
 }
 
@@ -88,15 +88,23 @@ body {
 
 /* Card de Produto */
 .product-card {
-    width: 100%;
-    height: calc(100vh - 130px);
-    background-color: white;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    overflow: hidden;
     position: relative;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: calc(100vh - 180px);
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     scroll-snap-align: start;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
 .product-image {
@@ -113,36 +121,49 @@ body {
 
 .product-info {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     left: 0;
     right: 0;
-    padding: 15px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 25px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.8) 100%);
     color: white;
+    min-height: 130px;
+    backdrop-filter: blur(10px);
 }
 
 .product-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.3;
 }
 
 .product-price {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 28px;
+    font-weight: 800;
     color: #ff4757;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #ff4757, #ff6b7a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .product-location {
-    font-size: 14px;
+    font-size: 15px;
+    opacity: 0.95;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    gap: 6px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .product-location i {
-    margin-right: 5px;
+    color: #ff4757;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 .product-actions {
@@ -152,15 +173,32 @@ body {
 }
 
 .whatsapp-button {
-    background-color: #25D366;
+    background: linear-gradient(135deg, #25d366, #20c55a);
     color: white;
     border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    font-weight: bold;
-    cursor: pointer;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-button:hover {
+    background: linear-gradient(135deg, #20c55a, #1ea84e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
 }
 
 .whatsapp-button i {
@@ -173,11 +211,25 @@ body {
 }
 
 .action-button {
-    background: transparent;
-    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     font-size: 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.action-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .action-button.favorite {
@@ -186,29 +238,57 @@ body {
 
 .action-button.favorite.active {
     color: #ff4757;
+    background: rgba(255, 71, 87, 0.2);
+    border-color: rgba(255, 71, 87, 0.3);
+}
+
+.action-button.favorite.active:hover {
+    background: rgba(255, 71, 87, 0.3);
 }
 
 /* Side Action Buttons */
 .side-actions {
     position: absolute;
-    right: 15px;
-    bottom: 100px;
+    right: 20px;
+    bottom: 170px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .side-action {
-    background-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     color: white;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.side-action:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.side-action.favorite.active {
+    color: #ff4757;
+    background: rgba(255, 71, 87, 0.2);
+    border-color: rgba(255, 71, 87, 0.4);
+}
+
+.side-action.favorite.active:hover {
+    background: rgba(255, 71, 87, 0.3);
+    border-color: rgba(255, 71, 87, 0.5);
 }
 
 /* Bottom Navigation */
@@ -258,54 +338,208 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
     background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 20px;
     width: 90%;
-    max-width: 500px;
+    max-width: 450px;
     position: relative;
-    animation: modalopen 0.3s;
+    animation: modalopen 0.4s ease-out;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 @keyframes modalopen {
-    from {opacity: 0; transform: translateY(-50px);}
-    to {opacity: 1; transform: translateY(0);}
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Modal Headers */
+.modal h2 {
+    margin: 0 0 25px 0;
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f1f3f4;
+}
+
+/* Progress Steps */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: #e1e5e9;
+    z-index: 1;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e1e5e9;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.step span {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    font-weight: 500;
+}
+
+.step.active .step-number {
+    background: #ff4757;
+    color: white;
+    transform: scale(1.1);
+}
+
+.step.active span {
+    color: #ff4757;
+    font-weight: 600;
+}
+
+.step.completed .step-number {
+    background: #2ed573;
+    color: white;
+}
+
+.step.completed span {
+    color: #2ed573;
+}
+
+/* Form Steps */
+.form-step {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.form-step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.form-navigation .btn {
+    flex: 1;
+}
+
+.btn.secondary {
+    background: #f8f9fa;
+    color: #666;
+    border: 2px solid #e1e5e9;
+}
+
+.btn.secondary:hover {
+    background: #e9ecef;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
 }
 
 .close {
-    color: #aaa;
+    color: #999;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 300;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.05);
     cursor: pointer;
 }
 
-.close:hover {
-    color: #333;
+.close:hover,
+.close:focus {
+    color: #ff4757;
+    background: rgba(255, 71, 87, 0.1);
+    transform: rotate(90deg);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Form Styles */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
 }
 
 input, textarea, select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
     font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #ff4757;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
+    transform: translateY(-1px);
 }
 
 textarea {
@@ -314,46 +548,76 @@ textarea {
 
 .btn {
     width: 100%;
-    padding: 12px;
+    padding: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn.primary {
-    background-color: #ff4757;
+    background: linear-gradient(135deg, #ff4757, #ff3742);
     color: white;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
 }
 
 .btn.primary:hover {
-    background-color: #ff2e43;
+    background: linear-gradient(135deg, #ff2e43, #ff1e2d);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+}
+
+.btn.primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 71, 87, 0.3);
 }
 
 .social-login {
-    margin-top: 20px;
+    margin-top: 25px;
     text-align: center;
+    position: relative;
+}
+
+.social-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e1e5e9, transparent);
 }
 
 .social-login p {
-    margin-bottom: 10px;
-    color: #777;
+    margin: 15px 0;
+    color: #666;
+    font-size: 14px;
+    background: white;
+    padding: 0 15px;
+    position: relative;
 }
 
 .btn.google {
     background-color: white;
     color: #333;
-    border: 1px solid #ddd;
+    border: 2px solid #e1e5e9;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn.google:hover {
-    background-color: #f1f1f1;
+    background-color: #f8f9fa;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Product Modal */
@@ -524,13 +788,62 @@ textarea {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .product-card {
-        height: calc(100vh - 120px);
+    .modal-content {
+        margin: 2% auto;
+        width: 95%;
+        padding: 20px;
+        border-radius: 15px;
+        max-height: 90vh;
+        overflow-y: auto;
     }
     
-    .modal-content {
-        margin: 5% auto;
-        width: 95%;
+    .product-card {
+        height: calc(100vh - 140px);
+        margin-bottom: 20px;
+        border-radius: 15px;
+    }
+    
+    .product-info {
+        padding: 20px;
+        min-height: 110px;
+    }
+    
+    .product-name {
+        font-size: 18px;
+    }
+    
+    .product-price {
+        font-size: 24px;
+    }
+    
+    .side-actions {
+        right: 15px;
+        bottom: 140px;
+        gap: 12px;
+    }
+    
+    .side-action {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .whatsapp-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .progress-steps {
+        margin-bottom: 20px;
+    }
+    
+    .step span {
+        font-size: 11px;
+    }
+    
+    .step-number {
+        width: 35px;
+        height: 35px;
     }
     
     .product-images {
@@ -539,9 +852,27 @@ textarea {
 }
 
 @media (max-width: 480px) {
+    .modal-content {
+        margin: 1% auto;
+        width: 98%;
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
     .nav-button {
         padding: 6px 12px;
         font-size: 12px;
+    }
+    
+    .product-card {
+        height: calc(100vh - 120px);
+        margin-bottom: 15px;
+        border-radius: 12px;
+    }
+    
+    .product-info {
+        padding: 15px;
+        min-height: 100px;
     }
     
     .product-name {
@@ -549,13 +880,39 @@ textarea {
     }
     
     .product-price {
-        font-size: 18px;
+        font-size: 22px;
+    }
+    
+    .side-actions {
+        right: 12px;
+        bottom: 120px;
+        gap: 10px;
     }
     
     .side-action {
-        width: 35px;
-        height: 35px;
+        width: 45px;
+        height: 45px;
         font-size: 18px;
+    }
+    
+    .whatsapp-button {
+        padding: 8px 16px;
+        font-size: 13px;
+        border-radius: 25px;
+    }
+    
+    .step span {
+        font-size: 10px;
+    }
+    
+    .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    
+    .form-navigation {
+        gap: 10px;
     }
     
     .product-images {

@@ -143,40 +143,74 @@
     <div id="register-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Cadastrar</h2>
+            <h2>Criar Conta</h2>
+            
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <span>Dados Pessoais</span>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <span>Contato</span>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <span>Segurança</span>
+                </div>
+            </div>
+            
             <form id="register-form">
-                <div class="form-group">
-                    <label for="register-name">Nome completo</label>
-                    <input type="text" id="register-name" required>
+                <!-- Step 1: Personal Info -->
+                <div class="form-step active" data-step="1">
+                    <div class="form-group">
+                        <label for="register-name">Nome completo</label>
+                        <input type="text" id="register-name" required placeholder="Digite seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-location">Cidade/Bairro</label>
+                        <input type="text" id="register-location" required placeholder="Ex: São Paulo, SP">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-photo">Foto de perfil (opcional)</label>
+                        <input type="file" id="profile-photo" accept="image/*">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="register-email">Email</label>
-                    <input type="email" id="register-email" required>
+                
+                <!-- Step 2: Contact Info -->
+                <div class="form-step" data-step="2">
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-phone">Telefone (WhatsApp)</label>
+                        <input type="tel" id="register-phone" required placeholder="(11) 99999-9999">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="register-phone">Telefone (WhatsApp)</label>
-                    <input type="tel" id="register-phone" required>
+                
+                <!-- Step 3: Security -->
+                <div class="form-step" data-step="3">
+                    <div class="form-group">
+                        <label for="register-password">Senha</label>
+                        <input type="password" id="register-password" required placeholder="Mínimo 6 caracteres">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirmar senha</label>
+                        <input type="password" id="register-confirm-password" required placeholder="Digite a senha novamente">
+                    </div>
+                    <div class="social-login">
+                        <p>Ou cadastre-se com:</p>
+                        <button type="button" class="btn google"><i class="fab fa-google"></i> Google</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="register-location">Cidade/Bairro</label>
-                    <input type="text" id="register-location" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-password">Senha</label>
-                    <input type="password" id="register-password" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-confirm-password">Confirmar senha</label>
-                    <input type="password" id="register-confirm-password" required>
-                </div>
-                <div class="form-group">
-                    <label for="profile-photo">Foto de perfil</label>
-                    <input type="file" id="profile-photo" accept="image/*">
-                </div>
-                <button type="submit" class="btn primary">Cadastrar</button>
-                <div class="social-login">
-                    <p>Ou cadastre-se com:</p>
-                    <button type="button" class="btn google"><i class="fab fa-google"></i> Google</button>
+                
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" id="prev-step" class="btn secondary" style="display: none;">Voltar</button>
+                    <button type="button" id="next-step" class="btn primary">Próximo</button>
+                    <button type="submit" id="submit-register" class="btn primary" style="display: none;">Cadastrar</button>
                 </div>
             </form>
         </div>

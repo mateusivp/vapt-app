@@ -811,6 +811,7 @@ loginButton.addEventListener('click', () => {
 
 registerButton.addEventListener('click', () => {
     registerModal.style.display = 'block';
+    resetRegisterForm();
 });
 
 addButton.addEventListener('click', () => {
@@ -1344,6 +1345,114 @@ function initApp() {
     `;
     document.head.appendChild(style);
 }
+
+// Multi-step Registration Form
+let currentStep = 1;
+const totalSteps = 3;
+
+function resetRegisterForm() {
+    currentStep = 1;
+    updateStepDisplay();
+    document.getElementById('register-form').reset();
+}
+
+function updateStepDisplay() {
+    // Update progress steps
+    const steps = document.querySelectorAll('.step');
+    const formSteps = document.querySelectorAll('.form-step');
+    
+    steps.forEach((step, index) => {
+        const stepNumber = index + 1;
+        step.classList.remove('active', 'completed');
+        
+        if (stepNumber < currentStep) {
+            step.classList.add('completed');
+        } else if (stepNumber === currentStep) {
+            step.classList.add('active');
+        }
+    });
+    
+    // Update form steps
+    formSteps.forEach((step, index) => {
+        step.classList.remove('active');
+        if (index + 1 === currentStep) {
+            step.classList.add('active');
+        }
+    });
+    
+    // Update navigation buttons
+    const prevBtn = document.getElementById('prev-step');
+    const nextBtn = document.getElementById('next-step');
+    const submitBtn = document.getElementById('submit-register');
+    
+    prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
+    nextBtn.style.display = currentStep === totalSteps ? 'none' : 'block';
+    submitBtn.style.display = currentStep === totalSteps ? 'block' : 'none';
+}
+
+function validateCurrentStep() {
+    const currentFormStep = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+    const inputs = currentFormStep.querySelectorAll('input[required]');
+    
+    for (let input of inputs) {
+        if (!input.value.trim()) {
+            input.focus();
+            return false;
+        }
+        
+        // Validate email format in step 2
+        if (input.type === 'email' && !isValidEmail(input.value)) {
+            alert('Por favor, insira um email válido.');
+            input.focus();
+            return false;
+        }
+        
+        // Validate password in step 3
+        if (input.id === 'register-confirm-password') {
+            const password = document.getElementById('register-password').value;
+            if (input.value !== password) {
+                alert('As senhas não coincidem.');
+                input.focus();
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function nextStep() {
+    if (validateCurrentStep() && currentStep < totalSteps) {
+        currentStep++;
+        updateStepDisplay();
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        currentStep--;
+        updateStepDisplay();
+    }
+}
+
+// Add event listeners for step navigation
+document.addEventListener('DOMContentLoaded', () => {
+    const nextBtn = document.getElementById('next-step');
+    const prevBtn = document.getElementById('prev-step');
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextStep);
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevStep);
+    }
+});
 
 // Iniciar o app quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
