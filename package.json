@@ -2,10 +2,9 @@
   "name": "vapt-app",
   "version": "1.0.0",
   "description": "VAPT - Marketplace de produtos usados estilo TikTok",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "build": "echo 'Static site - no build needed'"
   },
   "keywords": [
     "marketplace",
@@ -14,10 +13,5 @@
     "vapt"
   ],
   "author": "VAPT Team",
-  "license": "MIT",
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "dependencies": {}
-}
+  "license": "MIT"
 }
